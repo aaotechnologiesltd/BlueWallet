@@ -359,7 +359,18 @@ export default class WalletsAdd extends Component {
                           w.setLabel(this.state.label || loc.wallets.details.title);
                         }
                         if (this.state.activeBitcoin) {
-                          await w.generate(this.state.entropy);
+                          if (this.state.entropy) {
+                            try {
+                              await w.generateFromEntropy(this.state.entropy);
+                            } catch (e) {
+                              console.log(e.toString());
+                              alert(e.toString());
+                              this.props.navigation.goBack();
+                              return;
+                            }
+                          } else {
+                            await w.generate();
+                          }
                           BlueApp.wallets.push(w);
                           await BlueApp.saveToDisk();
                           EV(EV.enum.WALLETS_COUNT_CHANGED);
