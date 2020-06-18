@@ -125,5 +125,6 @@ it('can fullfill user generated entropy if less than 32 bytes provided', async (
   await hd.generateFromEntropy(Buffer.from(zeroes));
   const secret = hd.getSecret();
   assert.strictEqual(secret.startsWith('abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon'), true);
+  assert.strictEqual(secret.endsWith('abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon'), false);
   assert.ok(secret.split(' ').length === 12 || secret.split(' ').length === 24);
 });
