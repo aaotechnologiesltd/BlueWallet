@@ -49,7 +49,9 @@ module.exports = {
       lightning: 'Lightning',
       bitcoin: 'Bitcoin',
       entropy_provide: 'Сгенерировать энторию с помощью игральных костей',
-      entropy_generated: 'байтов сгенерированной энтории',
+      entropy_generated: '{gen} байтов сгенерированной энтории',
+      entropy_remain:
+        '{gen} байтов сгенерированной энтории. Оставшиеся {rem} байт будут получены из системного генератора случайных чисел.',
     },
     details: {
       title: 'Информация о кошельке',

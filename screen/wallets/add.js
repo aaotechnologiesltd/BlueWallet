@@ -166,6 +166,20 @@ export default class WalletsAdd extends Component {
       );
     }
 
+    let entropyTitle;
+    if (!this.state.entropy) {
+      entropyTitle = loc.wallets.add.entropy_provide;
+    } else if (this.state.entropy.length < 32) {
+      entropyTitle = loc.formatString(loc.wallets.add.entropy_remain, {
+        gen: this.state.entropy.length,
+        rem: 32 - this.state.entropy.length,
+      });
+    } else {
+      entropyTitle = loc.formatString(loc.wallets.add.entropy_generated, {
+        gen: this.state.entropy.length,
+      });
+    }
+
     return (
       <SafeBlueArea>
         <StatusBar barStyle="light-content" />
@@ -402,11 +416,7 @@ export default class WalletsAdd extends Component {
               {this.state.isAdvancedOptionsEnabled && (
                 <BlueButtonLink
                   style={styles.import}
-                  title={
-                    this.state.entropy
-                      ? this.state.entropy.length + ' ' + loc.wallets.add.entropy_generated
-                      : loc.wallets.add.entropy_provide
-                  }
+                  title={entropyTitle}
                   onPress={() => {
                     this.props.navigation.navigate('ProvideEntropy', { onGenerated: entropy => this.setState({ entropy }) });
                   }}

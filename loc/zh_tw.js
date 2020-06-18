@@ -47,7 +47,8 @@ module.exports = {
       lightning: '閃電',
       bitcoin: '比特幣',
       entropy_provide: 'Provide entropy via dice rolls',
-      entropy_generated: 'bytes of generated entropy',
+      entropy_generated: '{gen} bytes of generated entropy',
+      entropy_remain: '{gen} bytes of generated entropy. Remaining {rem} bytes will be obtained from the System random number generator.',
     },
     details: {
       title: '錢包',
